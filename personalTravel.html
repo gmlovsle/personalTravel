@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $(function(){
+            var AllHet = $(window).height();
+            var mainHet= $('.nav').height();
+            var fixedTop = (AllHet - mainHet)/2;
+            $('div.nav1 button').click(function(){
+                var ind = $('div.nav button').index(this)+1;
+                var topVal = $('#body'+ind).offset().top-90+"px";
+                $('body,html').animate({scrollTop:topVal},1000)
+            })
+            $('div.nav2 button').click(function(){
+                $('body,html').animate({scrollTop:0},1000)
+            })
+            $(window).scroll(scrolls)
+            scrolls()
+            function scrolls(){
+                var f1,f2,f3,f4,f5,bck;
+                var fixRight = $('div.nav1 button');
+                var blackTop = $('div.nav2 button');
+                var sTop = $(window).scrollTop();
+                fl = $('#body1').offset().top;
+                f2 = $('#body2').offset().top;
+                f3 = $('#body3').offset().top;
+                f4 = $('#body4').offset().top;
+                f5 = $('#body5').offset().top;
+                if(sTop<=f2-100){blackTop.fadeOut(300).css('display','none')}
+                else{blackTop.fadeIn(300).css('display','block')}
+                if(sTop>=fl){fixRight.eq(0).addClass('cur').siblings().removeClass('cur');}
+                if(sTop>=f2-100){fixRight.eq(1).addClass('cur').siblings().removeClass('cur');}
+                if(sTop>=f3-100){fixRight.eq(2).addClass('cur').siblings().removeClass('cur');}
+                if(sTop>=f4-100){fixRight.eq(3).addClass('cur').siblings().removeClass('cur');}
+                if(sTop>=f5-100){fixRight.eq(4).addClass('cur').siblings().removeClass('cur');}
+            }
+        })//滚动
+    </script>
+    <script>
+        var carousel_=$("#carousel-example-generic0");//图片转换
+        $("#body1").touchwipe({
+            ReferenceMaterial:"#tupianqiehuan",
+            distance : 1100,
+            wipeLeftFn:function(){console.log("");carousel_.carousel('prev');},
+            wipeRightFn:function(){console.log("");carousel_.carousel('next');},
+            nowipe:function(){}
+        });
+    </script>
+    <script type="text/javascript">
+        window.onload = function(){
+            var oTab = document.getElementById("body2");
+            var oUl = oTab.getElementsByTagName("ul")[0];
+            var oLis = oUl.getElementsByTagName("li");
+            var oDivs= oTab.getElementsByTagName("div");
+            for(var i= 0,len = oLis.length;i<len;i++){
+                oLis[i].index = i;
+                oLis[i].onclick = function() {
+                    for(var n= 0;n<len;n++){
+                        oLis[n].className = "";
+                        oDivs[n].className = "hide";
+                    }
+                    this.className = "on";
+                    oDivs[this.index].className = "";
+                }
+            };
+        }
+    </script>
+    <script type="text/javascript">//互动
+        function checkall(){
+            var hobby = document.getElementsByTagName("input");
+            for(var i=0;i<hobby.length;i++){
+                hobby[i].checked=true;
+            }
+        }
+        function clearall(){
+            var hobby = document.getElementsByName("hobby");
+            for(var i=0;i<hobby.length;i++){
+                hobby[i].checked=false;
+            }
+        }
+        function checkone(){
+            var j=document.getElementById("wb").value;
+            j=j.split(",");
+            for(i=0;i<j.length;i++){
+                document.getElementById("hobby"+j[i]).checked=true;
+            }
+        }
+    </script>
+    <style type="text/css">
+        .Blackadder{font-family: Blackadder ITC,黑体;font-size: 50px;color: #ffbb00;margin-left: 10px;}
+        .Blackadder:hover{color:#ddaa00;text-decoration: none;}
+        .name{float: left;}
+        .nav{background-color: #ffffff;border-bottom: 1px solid #ffbb00;}
+        .nav1 button{width: 150px;height: 60px;float: left;margin-left: 20px;}
+        .nav2 button{width: 150px;height: 60px;float: left;margin-left: 20px;}
+
+        .scrollable{color: #666666;margin-top: 0;width:80px;font-family: 华文新魏;font-size: 20px;line-height: 20px;background: #ffffff;border: none;}
+        .scrollable:hover{background: #ffffff;color: #ffbb00;font-size: 25px;line-height:25px;box-shadow: 2px 2px 2px;}
+        .glyphicon{font-size: 15px;}
+        .mbody{margin: 0 auto;width: 850px;}
+        #body1{width:850px;overflow:hidden;margin:0 auto;}
+
+        #body2 ul{border-bottom: 1px #ffbb00 solid;display: block;height: 50px;line-height:50px;list-style:none;}
+        #body2 ul li{width:100px;height: 50px;line-height:50px;text-align: center;display:inline-block;margin:0 5px;border: 1px solid #aaaaaa;cursor:pointer;border-bottom: none;}
+        #body2 ul li.on{border:1px solid #ffbb00;border-bottom: 1px solid #ffffff;color: #ffbb00;font-size: 22px;}
+        p{text-indent:2em;}
+        #body2{font-size: 20px;margin-top: 20px;padding: 0;border-radius: 5px;}
+        #body2 div{border:1px solid #ffbb00;padding: 5px;margin-top: -10px;border-top: none;}
+        .hide{display:none;}
+        #body3 th{width: 100px;}
+        #body3{margin-top: 20px;}
+        #body4{background-color: #f0f0f0;border-radius: 5px;}
+        #body5{background-color:#f0f0f0;border-radius: 5px;}
+
+        .weibu{border-top: 1px solid #ffbb00;}
+    </style>
+</head>
+<body>
+    <div class="nav navbar-fixed-top">
+        <div class="name">
+            <a class="Blackadder">gmlovsle</a>
+        </div>
+        <div class="nav1">
+            <button class="scrollable text-center">
+                <span class="glyphicon glyphicon-picture"></span>照片
+            </button>
+        </div>
+        <div class="nav1">
+            <button class="scrollable text-center">
+                <span class="glyphicon glyphicon-fire"></span>美好回忆
+            </button>
+        </div>
+        <div class="nav1">
+            <button class="scrollable text-center">
+                <span class="glyphicon glyphicon-heart"></span>未来计划
+            </button>
+        </div>
+        <div class="nav1">
+            <button class="scrollable text-center">
+                <span class="glyphicon glyphicon-earphone"></span>关于我
+            </button>
+
+        </div>
+        <div class="nav1">
+            <button class="scrollable text-center">
+                <span class="glyphicon glyphicon-leaf"></span>互动<span class="badge">new</span>
+            </button>
+        </div>
+        <div class="nav2">
+            <button class="scrollable text-center">
+                <span class="glyphicon glyphicon-upload"></span>返回顶部
+            </button>
+        </div>
+    </div>
+
+    <div class="mbody">
+        <div id="body1">
+            <div id="tupianqiehuan" style="width:850px;overflow:hidden;margin:0 auto;">
+                <div id="carousel-example-generic0" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic0" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic0" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic0" data-slide-to="2"></li>
+                        <li data-target="#carousel-example-generic0" data-slide-to="3"></li>
+                        <li data-target="#carousel-example-generic0" data-slide-to="4"></li>
+                        <li data-target="#carousel-example-generic0" data-slide-to="5"></li>
+                    </ol>
+                    <div class="carousel-inner" id="carousel-inner-z" role="listbox" style="width: 850px;height: auto;margin:0 auto;">
+                        <div class="item active">
+                            <img src="http://ww3.sinaimg.cn/large/0060lm7Tgy1fdza2ow6kvj31kw16ou11.jpg" >
+                        </div>
+                        <div class="item">
+                            <img src="http://ww1.sinaimg.cn/large/0060lm7Tgy1fdza4g3v5gj31kw16ox6t.jpg" >
+                        </div>
+                        <div class="item">
+                            <img src="http://ww4.sinaimg.cn/large/0060lm7Tgy1fdza1f6910j31kw16ox6r.jpg" >
+                        </div>
+                        <div class="item">
+                            <img src="http://ww3.sinaimg.cn/large/0060lm7Tgy1fdza1hukxsj31kw16ox6p.jpg" >
+                        </div>
+                        <div class="item">
+                            <img src="http://ww4.sinaimg.cn/large/0060lm7Tgy1fdza4aytcbj31kw16oqvb.jpg" >
+                        </div>
+                        <div class="item">
+                            <img src="http://ww2.sinaimg.cn/large/0060lm7Tgy1fe048pkl3ej30qo0k0gqg.jpg" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="body2">
+            <ul>
+                <li class="on">碧峰峡</li>
+                <li>青城山</li>
+                <li>甘孜州</li>
+                <li>阿坝州</li>
+                <li>汶川县</li>
+                <li>更新中</li>
+            </ul>
+            <div>
+                <p>雅安碧峰峡国家级4A景区。因林木葱茏、四季青碧而得名。传说是补天英雄女娲所化而成，景区内60多个景点均与女娲有关，颇为神秘。在碧峰峡风景区你能呼吸到群山幽谷蕴酿的芳醇空气，寻找到万古犹存的补天遗迹，以及那些曾在此发生过的爱的、美的传说故事，它象一首空灵的朦胧诗，一幅淡雅的水墨画，等待你去品味，去赏析。 碧峰峡风景区由两条峡谷构成，左峡谷长7公里，右峡谷长6公里，呈V字型，是一个封闭式的可循环游览景区。峡宽30-70米，海拔700-1971米，峡壁高度100-200米，青峰对峙，景色秀雅，是休闲度假，避暑纳凉的绝佳之地。
+                碧峰峡景区包含黄龙峡、天仙桥、天然盆景、千层岩瀑布、白龙潭瀑布、女娲池、滴水栈道、雅女园等众多景点。</p>
+                <p><h2>行程安排建议</h2></p>
+                <p><h3>1. 成都雅安碧峰峡二日游(成雅高速) 动物园 碧峰峡</h3></p>
+                <p>第1天：早上8点从成都出发、9点30左右到，住下后、游野生动物园至下午5点，在碧峰峡（大本营）接待中心晚餐，夜晚参加篝火晚会，联欢活动。</p>
+                <p>第2天：早餐后9点钟乘电梯到景区，沿左沟经鸳鸯瀑布、天河，通天藤而上，在雅女园休息一下，上碧峰寺再沿游道，游情人小道， 经女娲祠、山鬼坡至小西天民俗度假村，中餐后沿右沟经添运磨、田翁桥、淘金滩、白龙潭瀑布、红灯笼、千层岩瀑布，游览景区后乘电梯返回接待中心，在中心吃晚餐，乘车返回成都。</p>
+                <p><h3>2. 成都雅安碧峰峡三日游 动物园 碧峰峡</h3></p>
+                <p>第1天8:00乘车,9:30到碧峰峡,登记住下后当天游动物园，晚上参加篝火晚会。</p>
+                <p>第2天9:00乘电梯沿左沟而上经天河，中午在雅女园用餐，休息后，上碧峰寺，至女娲祠、山鬼坡，下午到达小西天，晚餐后住小西天民俗村。(晚会，联欢)</p>
+                <p>第3天早餐后，沿右沟而下，游野鸭滩、女娲池、白龙潭、龙凤桥、千层岩瀑布乘电梯回大本营(接待中心)午餐后，乘车回成都</p>。
+                <p><h3>3. 碧峰峡景区二日游</h3></p>
+                <p>第一天8:00从成都乘车9:30到碧峰峡接待中心。购门票后电梯到峡区、经左沟天河、通天藤到雅女园，休息后在此用中餐，餐后游碧峰寺、观古刹、拜观音、品茶、看云雾 ；拾梯而下，经古墓、鸳鸯树、女娲祠、山鬼坡到小西天度假村，登记住下后、游田园风光、看农具展、踏水车、晚餐后，联欢、篝火晚会、观碧峰峡夜景。</p>
+                <p>第二天9:00早餐后，沿右沟经 野鸭滩 、金粉滩、在河之洲、白龙潭瀑布、红灯笼客栈、千层岩瀑布乘电梯回到接待中心，中餐后，午返回成都。</p>
+            </div>
+            <div class="hide">
+                <p>青城山（Mount Qingcheng)，世界文化遗产，全国重点文物保护单位，国家重点风景名胜区，国家5A级旅游景区，全球道教全真道圣地，中国四大道教名山之一，五大仙山之一，中国道教发祥地之一，成都十景之一。</p>
+                <p>青城山位于成都市都江堰市西南，东距成都市区68公里，处于都江堰水利工程西南10公里处。景区面积200平方千米，最高峰老君阁海拔1260米，青城山分为前山和后山，群峰环绕起伏、林木葱茏幽翠，享有“青城天下幽”的美誉。</p>
+                <p>全山林木青翠，四季常青，诸峰环峙，状若城廓，故名青城山。丹梯千级，曲径通幽，以幽洁取胜。景区内外，天师洞和圆明宫幽静是青城山的一大特色。</p>
+                <p>青城山，一名丈人，一名赤城，一名清城，西岳佐命之山。为十大洞天第五洞，号曰“宝仙九室之天”，在青城县青城山洞，周回二千里，属青城丈人治之。环列三十六峰一百零八胜景，诸峰环绕状如城廓。青城丈人，黄帝所命也，主地仙人，是五岳之上司，以总群臣也。丈人领仙官万人。道士入其岳，丈人服朱光之袍，戴盖天之冠，佩三庭之印，乘科车从众灵，而来迎子。</p>
+                <p><h2>交通</h2></p>
+                <p>公路：成灌高速公路直达都江堰，都汶高速公路至都江堰西</p>
+                <p>铁路：成灌高铁直达“青城山高铁站”（青城山镇东南端，距山门还有较远距离）</p>
+                <p>航空：成都双流国际机场在都江堰市设有候机室，可提前打印成都双流国际机场的登机牌，并有定时班车直达机场</p>
+                <p><h2>门票</h2></p>
+                <p>门票：90.00元/人</p>
+                <p>①全票90.00元/张。</p>
+                <p>②符合以下条件的游客购买半票：身高1.2米（含1.2米）以上的学生、60岁以上未满70周岁的老人、军队离休干部和部队现役军人、武警官兵。</p>
+                <p><h2>开放时间</h2></p>
+                <p>开放时间：旺季（3月2日~11月30日）：08:00~17:00 淡季（12月1日~3月1日）：08:00~18:00</p>
+            </div>
+            <div class="hide">
+                <p>甘孜藏族自治州（简称甘孜州）位于四川省西部，康藏高原东南。总面积15.3万平方公里，是一个以藏族为主体民族的地级行政区。全州辖康定1个县级市，泸定、丹巴等17个县，325个乡（镇），2679个行政村。</p>
+                <p>州府驻康定市，是全州的政治、经济和文化中心，因一曲《康定情歌》而名扬海内外，被誉为情歌的故乡。</p>
+                <p>甘孜州境内有丰富的水力资源和地热资源；有熊猫、小熊猫、金丝猴、白唇鹿等野生动物；有天麻、虫草、贝母、当归、黄芪等名贵中药材。有金、银、铜、铁、钼、锂、大理石、花岗岩等矿产资源。</p>
+                <p>甘孜州康定、雅江、道孚三县(市)交界处的甲基卡锂辉石矿区，已探明资源储量达188.77万吨，甘孜将打造“中国锂都”。</p>
+                <p>相关专业机构分析评估，甲基卡锂辉石资源前景有望突破300万吨，康定、雅江、道孚交界的35.96平方公里锂辉石矿区已上升为国家级整装勘查区。</p>
+                <p>甘孜藏区甲基卡锂辉石矿锂金属初步估价达3876亿元，其中所含的6.6万吨同位素锂6(6Li)，相当于2428.8亿吨标准煤的能量，约占全世界探明可采煤总储量(8260亿吨)的29%。</p>
+            </div>
+            <div class="hide">
+                <p>阿坝藏族羌族自治州，简称阿坝州，是四川省的一个自治州，以少数民族为主要人口，位于四川省西北部，与青海省、甘肃省交界。全自治州以高海拔山区为主，其北部传统上属于安多地区，西部金川县、小金县传统上属于康区。</p>
+                <p>幅员面积83,426平方公里，辖1市12县（马尔康市、九寨沟县、小金县、阿坝县、若尔盖县、红原县、壤塘县、汶川县、理县、茂县、松潘县、金川县、黑水县），行政中心驻地马尔康市。阿坝州是四川省第二大藏区和中国羌族的主要聚居区。</p>
+                <p>阿坝州有九寨沟、黄龙等世界自然遗产。阿坝州被世界旅游专家誉为世界生态旅游最佳目的地。2012年入选“2012年度中国特色魅力城市200强”。</p>
+                <p>世界自然遗产九寨沟、黄龙风景区隔山相望，双桥沟、锅庄坪、尖子雪山景点，流云山岗轻抹浓裹，冰斗湖、沙棘林、风娇波池、岷江大峡谷自西东来，流泉飞瀑穿行其间，大渡河裂谷由北向南；三江生态圈、卧龙大熊猫自然保护区、高原湿地自然保护区、黑颈鹤梅花鹿自然保护区；九曲黄河第一弯；川西北大草原辽阔无垠；降扎温泉、米亚罗红叶温泉，灵泉圣水洗浴民俗。岷江上游石棺葬及出土青铜器、玉石、金银器、陶器（战国时期），浓缩和再现了羌族先民的独特文化面貌和聪明智慧；古刹等建筑古朴久远，是藏羌民族文化艺术的杰作，是藏羌民族建筑艺术的活化石，宗教文化丰富多彩，天文、地理、美术、医学等包罗万象，文物名刹不胜枚举。藏羌民俗风清古朴，锅庄舞、服饰、羌族刺绣、藏羌山歌、饮食文化等无不引人入胜。</p>
+            </div>
+            <div class="hide">
+                <p>汶川县位于青藏高原东部边缘、四川省西北部，居川西北高原和阿坝藏族羌族自治州东南部，东西宽84公里，南北长105公里，总面积4084平方公里，县城海拔1236米。南距省会成都146公里，北离州府马尔康202公里，区位优势明显，交通便利。辖威州、绵虒、映秀、漩口、水磨、卧龙、三江、耿达8镇，龙溪、克枯、雁门、银杏4乡。2014年末，全县户籍人口99949人，其中，男性51814人、女性48135人，藏族20081人、羌族37353人、汉族40971人、回族1169人。</p>
+                <p>汶川素有“大禹故里、熊猫家园、羌绣之乡”之称，是华夏始祖大禹的出生地，是全国四大羌族聚居县之一，是国家羌文化生态体验区。围绕“世界汶川、大禹故里、熊猫家园”旅游品牌，以大禹文化、藏羌文化、三国文化、红色文化、生态文化、门户文化为依托，大力发展文化旅游产业，以项目建设、旅游商品开发、羌禹文化体验为重点，狠抓旅游经济的培育和发展，建成宜居汶川、畅通汶川、平安汶川、健康汶川、科教汶川、低碳汶川。</p>
+                <p>纪念地有红军烈士纪念馆。名胜古迹有石纽村刳儿坪、姜维城等。县境西南部为卧龙自然保护区，为大熊猫的研究和主要繁殖地。主要景点有大熊猫苑、中国卧龙大熊猫博物馆、熊猫沟、正河、邓生原始森林、巴朗山高山草甸等。</p>
+                <p>阿坝州汶川县不仅是全国仅有的四个羌族聚居县之一，也是中国民族民间艺术之乡———羌绣之乡，更是动物活化石———大熊猫的故乡，还有世界上首屈一指的大熊猫研究中心———卧龙。</p>
+                <p>迥澜塔位于汶川县漩口镇镇政府后岷江与寿溪河交汇处的岸边台地上。塔为九级密檐式砖塔，坐东南向西北。塔基及塔身平面呈正六方形，以白色灰浆抹面。塔基由上往下微内收，底边长2.6米，高6.5米，西南面开拱形门一道，高2.4米，宽0.80米。</p>
+                <p>七盘沟位于阿坝藏族羌族自治州汶川县城南，距县城约7公里。沟长约30公里，沟口海拔1500米，沟顶的白龙池4020米，沟宽处300余米，窄处仅1米左右。沟内雨量充沛，植被茂密，是一处以自然风光为主的山地风景区。</p>
+            </div>
+            <div class="hide">
+                <p>更多景点等待探索中……</p>
+            </div>
+        </div>
+        <div id="body3">
+            <div class="list-group">
+                <a href="http://baike.baidu.com/link?url=lapjnTp5lgLbJYAAorj460FQST2VYvDy4gDJFz6x9VBX7YYqp2VmUTfQC8fD3LmMCdbqtoV42b2Lo4wMFCw5l5S6GDEUq3X3ENKuGKanJLYKUqFr7Kzip8-eVjxQykujC0DNDPtxs3goYYn_TJ11FfldYzAQtjyY6T3O_0FnQvtj11Qhn69ACt7zZ5T2XunKxfHTyLMiRoAP_dn3IlEWcu3OjrRZ4Joaw8lCy3nNp54LzyO0mqnNJdp78kIuIxsurQe5IRhnkFGIc39Pvkl5Zq" target="_blank" class="list-group-item list-group-item-active">九寨沟：世界自然遗产、国家重点风景名胜区、国家AAAAA级旅游景区、国家级自然保护区、国家地质公园、世界生物圈……</a>
+                <a href="http://baike.baidu.com/item/%E8%89%B2%E8%BE%BE%E5%8E%BF?fromtitle=%E8%89%B2%E8%BE%BE&fromid=7727813&type=syn&sefr=cr" class="list-group-item list-group-item-success" target="_blank"><span class="glyphicon glyphicon-heart"></span>色达：色达县名由来，经考证，主要因早年曾在色塘发现一马形黄金而得名，故有“金马”之称……</a>
+                <a href="http://baike.baidu.com/link?url=h7hZdq9-CDniwnKNPWQZMYhI9yeS1h9415SAjMxqG8c4yBoVT3qfwOv1KQQJJYhPeN57vOlDTpS3VxviXRuvgV-343Dix3ffzZShgWfJ4W_" target="_blank" class="list-group-item list-group-item-info"><span class="glyphicon glyphicon-heart"></span>亚丁：由于特殊的地理环境和自然气候，形成了独特的地貌和自然景观，是我国保存最完整的一处自然生态系统……</a>
+                <a href="http://baike.baidu.com/item/%E6%B3%B8%E6%B2%BD%E6%B9%96/396555?sefr=cr" target="_blank" class="list-group-item list-group-item-warning"><span class="glyphicon glyphicon-heart"></span>泸沽湖：泸沽湖属高原断层溶蚀陷落湖泊，由一个西北东南向的断层和两个东西向的断层共同构成……</a>
+                <a href="http://baike.baidu.com/item/%E9%BB%84%E9%BE%99%E9%A3%8E%E6%99%AF%E5%90%8D%E8%83%9C%E5%8C%BA/17722?sefr=cr&fromtitle=%E9%BB%84%E9%BE%99&fromid=22850" target="_blank" class="list-group-item list-group-item-danger">黄龙：黄龙风景名胜区：世界自然遗产，世界人与生物圈保护区，“绿色环球21”证书，国家AAAAA级旅游景区……</a>
+            </div>
+        </div>
+        <div id="body4">
+            <h3>张根铭</h3>
+            <p>于2015年毕业于西南石油大学机械工程及自动化（机电一体化）专业，本人做人真诚，做事认真负责，积极务实，敢于主动承担责任，能坚持，有执行能力，勤奋，善于学习自己感兴趣的知识和事物。</p>
+            <h4>工作经历</h4>
+            <p>成都三相伟业电子商务有限公司   web前端实习生    2016.12 — 2017.05</p>
+<p>1.参与PC端商城项目，配合UI和后台开发人员实现在线商城的前端功能。</p>
+<p>2.参与移动端商城项目开发，配合后台人员，构建高质量移动端在线商城。</p>
+<p>3.负责产品HTML5、CSS3、javascript的编写，通用类库、框架编写，解决浏览器适配问题。</p>
+<p>4.对项目的后期维护，改进用户体验，BUG修改等。</p>
+            <p></p>
+<p>四川道勤数控刀具有限公司   技术员   2016.07 — 2016.10</p>
+<p>利用VB进行数控刀片设计计算的编程，空余时间完成web前端的学习，完成对HTML(5)、CSS(3)、JavaScript、JQuery、Bootstrap、Sass、Vue等前端知识的学习。</p>
+<p></p>
+            <p>四川省威尔敦化工有限公司   技术员   2015.06 — 2016.05</p>
+<p>利用VB进行公司考试系统的编程，完成公司考勤制度及专业知识的在线考察。此编程参照驾校考试系统进行设计。空余时间完成JAVA的基本知识学习，达到计算机二级水平要求。在公司举办的五项能力活动中，获得Office一等奖，PS二等奖，Autocad二等奖，Creo二等奖。</p>
+            
+            
+        </div>
+        <div id="body5" class="text-center">
+            <form>
+                <br/>
+                <input type="checkbox" name="hobby" id="hobby1">  1、90后
+                <input type="checkbox" name="hobby" id="hobby2">  2、热爱计算机
+                <input type="checkbox" name="hobby" id="hobby3">  3、不抽烟
+                <input type="checkbox" name="hobby" id="hobby4">  4、不爱喝酒
+                <input type="checkbox" name="hobby" id="hobby5">  5、汉族
+                <input type="checkbox" name="hobby" id="hobby6">  6、本科 <br/>
+                <input type="button" value = "和我一样" class="btn btn-success" onclick = "checkall();">
+                <input type="button" value = "完全相反" class="btn btn-danger" onclick = "clearall();">
+                <p>请输入您和我的相同点的序号用"，"隔开:</p>
+                <input id="wb" name="wb" type="text" >
+                <input name="ok" type="button" value="确定" class="btn btn-info" onclick = "checkone();">
+                <br/><br/>
+            </form>
+        </div>
+    </div>
+
+    <div class="weibu row">
+        <div class="erweima col-xs-6 col-sm-6 col-md-6 col-lg-6" style="text-align: right;right: 50px;">
+            <ul class="test_ul" style="list-style:none;display: block;left:300px;">
+                <li style="width: 50px;height: 50px;display:inline-block;cursor:pointer;"><img class="weixin" src="http://ww3.sinaimg.cn/large/0060lm7Tgy1fec2gudx28j30by0bymxz.jpg" style="width: 90px;height: 90px;"></li>
+                <li style="width: 50px;height: 50px;display:inline-block;cursor:pointer;"><img class="weibo" src="http://ww1.sinaimg.cn/large/0060lm7Tgy1fec2gkhg9wj305s05twek.jpg" style="width: 80px;height: 80px;margin-left: 50px;"></li>
+            </ul>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="left:50px;top:5px">
+            扫码关注<br/>
+            作者：张根铭<br/>
+            电话：18180820306<br/>
+            邮箱：276841902@qq.com
+        </div>
+    </div>
+
+
+
+
+</body>
+</html>
